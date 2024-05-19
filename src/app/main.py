@@ -1,3 +1,4 @@
+from random import *
 from telebot import *
 from service.commandService import answer_command
 from service.messageService import answer_message

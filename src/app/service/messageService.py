@@ -1,22 +1,24 @@
-import random
+def extract_words(text):
+    symbols = ".,/(){}[]&?!#$@;%:*№''\"\""
+    for sym in symbols:
+        text = text.replace(sym, " ")
+    text = [word.lower() for word in text.split(" ")]
+    while "" in text:
+        text.remove("")
+    return text    
 
 
 def answer_message(bot, message):
-    command = message.text[1:]
-    match command:
-        case "unknown_message":
-            unknown_message(bot, message.chat.id)
+    text = message.text
+    words = extract_words(text)
+    # todo: сделать проверку, если какое-то слово содержится в базе, то давать ответ. Иначе unknown_message
+    unknown_message(bot, message.chat.id)
 
 
 def unknown_message(bot, chat_id):
-    responce = random.choice(answers["unknown"])
-    bot.send_message(chat_id, responce)
+    bot.send_message(chat_id, answers["unknown"])
 
 
 answers = {
-    "unknown": [
-        "😕 К сожалению, данная команда не существует",
-        "❓ Извините, я не знаю такой команды",
-        "🙁 Команда не распознана. Попробуйте другую"
-    ]
+    "unknown": "Я ещё не умею общаться на такие темы"
 }

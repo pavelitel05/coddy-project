@@ -3,8 +3,8 @@ def answer_command(bot, message):
     match command:
         case "start":
             start(bot, message.chat.id)
-        case "unknown":
-            unknown_command(bot, message.chat.id)
+            return
+    unknown_command(bot, message.chat.id)
 
 
 def start(bot, chat_id):

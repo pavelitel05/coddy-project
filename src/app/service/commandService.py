@@ -1,3 +1,6 @@
+import random
+
+
 def answer_command(bot, message):
     command = message.text[1:]
     match command:
@@ -12,7 +15,8 @@ def start(bot, chat_id):
 
 
 def unknown_command(bot, chat_id):
-    bot.send_message(chat_id, answers["unknown"])
+    responce = random.choice(answers["unknown"])
+    bot.send_message(chat_id, responce)
 
 
 answers = {
@@ -21,8 +25,9 @@ answers = {
     
 👀 Это выпускной проект по курсу Python: telegram bots
     """,
-    "unknown": """
-     к сожелению данная комманда не существует
-    """
+    "unknown": [
+        "😕 К сожалению, данная команда не существует",
+        "❓ Извините, я не знаю такой команды",
+        "🙁 Команда не распознана. Попробуйте другую"
+    ]
 }
-
